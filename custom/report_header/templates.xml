@@ -1,0 +1,11 @@
+<openerp>
+    <data>
+        <template id="report.custom_external_layout_header" inherit_id="report.external_layout_header">
+            <xpath t-if="company.custom_header" expr="//div[@class='header']" position="replace">
+                <div class="header">
+                    <span t-raw="company.rml_header_custom"/>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>
