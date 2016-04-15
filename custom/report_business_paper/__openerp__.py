@@ -24,8 +24,8 @@
 
     # always loaded
     'data': [
-        'views/templates.xml',
-        'views/report.xml',
         'views/menu.xml',
+        'views/report.xml',
+        'views/templates.xml',
     ],
 }

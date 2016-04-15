@@ -16,8 +16,6 @@ class res_company(osv.Model):
     }
 
     def init(self, cr):
-        ref = partial(self.pool['ir.model.data'].xmlid_to_res_id, cr, SUPERUSER_ID)
-
         ids = self.search(cr, SUPERUSER_ID, [('custom_header', '=', False)])
         for company in self.browse(cr, SUPERUSER_ID, ids):
             company.write({'custom_header': False, 'rml_header_custom': 'Example header'})
