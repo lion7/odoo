@@ -1,0 +1,14 @@
+<openerp>
+    <data>
+        <template id="report_business_paper_invoice">
+            <style>
+                .container {
+                    background-image: url('/web/binary/image?model=res.company&amp;field=business_paper&amp;id=<t t-raw="user.company_id.id"/>') !important;
+                    background-repeat: no-repeat;
+                    background-size: 100%;
+                }
+            </style>
+            <t t-call="account.report_invoice"/>
+        </template>
+    </data>
+</openerp>

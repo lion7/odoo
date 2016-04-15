@@ -1,0 +1,13 @@
+<openerp>
+    <data>
+        <report id="report_business_paper_invoices"
+                model="account.invoice"
+                string="Invoices (business paper)"
+                report_type="qweb-pdf"
+                name="report_business_paper.report_business_paper_invoice"
+                file="report_business_paper.report_business_paper_invoice"
+                attachment_use="True"
+                attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+        />
+    </data>
+</openerp>
