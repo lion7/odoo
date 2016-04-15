@@ -39,19 +39,21 @@ class Report(osv.Model):
 
     def get_pdf(self, cr, uid, ids, report_name, html=None, data=None, context=None):
         content = super(Report, self).get_pdf(cr, uid, ids, report_name, html, data, context)
-        if report_name == u'report_business_paper.report_business_paper_invoice':
-            content = self._add_business_paper(cr, uid, content)
+        if report_name == u'report_business_paper.report_invoice':
+            content = self._add_business_paper(cr, uid, content, context)
         return content
 
-    def _add_business_paper(self, cr, uid, content):
+    def _add_business_paper(self, cr, uid, content, context=None):
         # Get the current user record.
-        context = {}
         users = self.pool.get('res.users')
         current_user = users.browse(cr, uid, uid, context)
 
         # Retrieve the business paper image data.
         company = current_user.company_id
         image_data = company.business_paper
+
+        if image_data is None:
+            return content
 
         # Create a temporary file containing the image data and draw it on the PDF.
         image = tempfile.SpooledTemporaryFile(suffix='.img', prefix='business_paper.tmp.', mode='w+b')
