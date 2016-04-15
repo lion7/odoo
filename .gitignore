@@ -28,3 +28,6 @@ install/win32/meta.py
 /man/
 /share/
 /src/
+
+# intellij idea
+*.iml
