@@ -7,5 +7,12 @@
                 </div>
             </xpath>
         </template>
+        <template id="external_layout_footer" inherit_id="report.external_layout_footer">
+            <xpath t-if="company.custom_footer" expr="//div[@class='footer']" position="replace">
+                <div class="header">
+                    <span t-raw="company.rml_footer"/>
+                </div>
+            </xpath>
+        </template>
     </data>
 </openerp>

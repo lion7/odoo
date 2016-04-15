@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "report_business_paper",
+    'name': "Report customization - business paper",
 
     'summary': """
-        Report business paper""",
+        Add business paper to your reports""",
 
     'description': """
-        Allows to define report business paper.
+        Allows to define report business paper.\n
+        Usually you'd want to change the layout of the following reports:\n
+        - account.report_invoice_document
     """,
 
     'author': "LeeuwIT",

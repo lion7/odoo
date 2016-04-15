@@ -22,7 +22,7 @@ class res_company(osv.Model):
     _inherit = 'res.company'
 
     _columns = {
-        'business_paper': fields.binary("Business Paper", help='Business paper image'),
+        'business_paper': fields.binary("Business paper", help='Business paper'),
     }
 
     def init(self, cr):
@@ -64,7 +64,7 @@ class Report(osv.Model):
         # Create a temporary PDF file containing the image.
         business_paper_pdf = tempfile.NamedTemporaryFile(suffix='.pdf', prefix='business_paper.tmp.', mode='w+b')
         c = canvas.Canvas(business_paper_pdf, pagesize=[a4_width, a4_height])
-        c.drawImage(image_reader, 0, 0, a4_width, a4_height, mask=[254, 255, 254, 255, 254, 255])
+        c.drawImage(image_reader, 0, 0, a4_width, a4_height)
         c.save()
         image.close()
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "report_header",
+    'name': "Report customization - header",
 
     'summary': """
-        Custom report header""",
+        Add a custom header to your reports""",
 
     'description': """
         Allows to define the report header manually.
