@@ -1,5 +1,5 @@
 #. module: report_header
-`#: field:res.company,custom_header:0
+#: field:res.company,custom_header:0
 msgid "Custom Header"
 msgstr "Aangepaste koptekst"
 
