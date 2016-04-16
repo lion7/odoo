@@ -1,9 +1,0 @@
-#. module: report_business_paper
-#: view:res.company:report_business_paper.view_company_form_inherited
-msgid "Business paper"
-msgstr "Briefpapier"
-
-#. module: report_business_paper
-#: model:ir.actions.report.xml,name:report_business_paper.account_invoices
-msgid "Invoices on business paper"
-msgstr "Facturen op briefpapier"

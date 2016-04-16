@@ -1,7 +1,0 @@
-<openerp>
-    <data>
-        <template id="report_invoice">
-            <t t-call="account.report_invoice"/>
-        </template>
-    </data>
-</openerp>
