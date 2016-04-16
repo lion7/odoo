@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Report customization - header",
+    'name': "Report Header",
 
     'summary': """
         Add a custom header to your reports""",
 
     'description': """
-        Allows to define the report header manually.
+        Allows to define a custom report header.
     """,
 
     'author': "LeeuwIT",
@@ -25,6 +25,5 @@
     # always loaded
     'data': [
         'views/menu.xml',
-        'views/templates.xml',
     ],
 }

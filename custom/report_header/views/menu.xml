@@ -10,8 +10,9 @@
                 <data>
                     <xpath expr="//page[@string='Report Configuration']/group[@string='Configuration']"
                            position="inside">
-                        <field name="custom_header"/>
+                        <field name="custom_header" on_change="onchange_header(custom_header, phone, fax, email, website, vat, company_registry, bank_ids)"/>
                         <field name="rml_header_custom" attrs="{'invisible': [('custom_header','=',False)]}"/>
+                        <field name="rml_header_custom_readonly" attrs="{'invisible': [('custom_header','=',True)]}"/>
                     </xpath>
                 </data>
             </field>

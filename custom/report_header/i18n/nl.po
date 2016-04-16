@@ -1,9 +1,9 @@
 #. module: report_header
-#: view:res.company:report_header.view_company_form_inherited
-msgid "Custom header"
+`#: field:res.company,custom_header:0
+msgid "Custom Header"
 msgstr "Aangepaste koptekst"
 
 #. module: report_header
-#: view:res.company:report_header.view_company_form_inherited
-msgid "Report header"
+#: field:res.company,rml_header_custom:0
+msgid "Report Header"
 msgstr "Rapportage koptekst"
