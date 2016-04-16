@@ -1,0 +1,4 @@
+#. module: report_business_paper
+#: field:ir.actions.report.xml,background:0
+msgid "Background"
+msgstr "Achtergrond"

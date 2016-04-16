@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Add a background button to the report form view -->
+        <record id="act_report_xml_view_inherit" model="ir.ui.view">
+            <field name="name">act_report_xml_view_inherit</field>
+            <field name="inherit_id" ref="base.act_report_xml_view" />
+            <field name="model">ir.actions.report.xml</field>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='report_name']" position="after">
+                        <field name="background" widget="image" class="oe_avatar"
+                               attrs="{'invisible':[('report_type','not in',['qweb-pdf'])]}"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>
+

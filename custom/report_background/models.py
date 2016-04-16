@@ -17,53 +17,36 @@ inch = 72
 a4_width = 210 * mm
 a4_height = 297 * mm
 
-
-class res_company(osv.Model):
-    _inherit = 'res.company'
+class ir_actions_report(osv.Model):
+    _inherit = 'ir.actions.report.xml'
 
     _columns = {
-        'business_paper': fields.binary("Business paper", help='Business paper'),
+        'background': fields.binary('Background'),
     }
-
-    def init(self, cr):
-        ids = self.search(cr, SUPERUSER_ID, [('business_paper', '=', False)])
-        for company in self.browse(cr, SUPERUSER_ID, ids):
-            company.write({'business_paper': None})
-
-        sup = super(res_company, self)
-        if hasattr(sup, 'init'):
-            sup.init(cr)
 
 class Report(osv.Model):
     _inherit = 'report'
 
     def get_pdf(self, cr, uid, ids, report_name, html=None, data=None, context=None):
+        # Get the PDF content of the report
         content = super(Report, self).get_pdf(cr, uid, ids, report_name, html, data, context)
-        if report_name == u'report_business_paper.report_invoice':
-            content = self._add_business_paper(cr, uid, content, context)
+        # Get the ir.actions.report.xml record we are working on.
+        report = super(Report, self)._get_report_from_name(cr, uid, report_name)
+        # Add the background
+        if report.background:
+            content = self._add_background(cr, uid, content, report.background, context)
         return content
 
-    def _add_business_paper(self, cr, uid, content, context=None):
-        # Get the current user record.
-        users = self.pool.get('res.users')
-        current_user = users.browse(cr, uid, uid, context)
-
-        # Retrieve the business paper image data.
-        company = current_user.company_id
-        image_data = company.business_paper
-
-        if image_data is None:
-            return content
-
-        # Create a temporary file containing the image data and draw it on the PDF.
-        image = tempfile.SpooledTemporaryFile(suffix='.img', prefix='business_paper.tmp.', mode='w+b')
-        image.write(image_data.decode('base64'))
+    def _add_background(self, cr, uid, content, background, context=None):
+        # Create a temporary file containing the image data.
+        image = tempfile.SpooledTemporaryFile(suffix='.img', prefix='background.tmp.', mode='w+b')
+        image.write(background.decode('base64'))
         image.seek(0)
         image_reader = ImageReader(image)
 
-        # Create a temporary PDF file containing the image.
-        business_paper_pdf = tempfile.NamedTemporaryFile(suffix='.pdf', prefix='business_paper.tmp.', mode='w+b')
-        c = canvas.Canvas(business_paper_pdf, pagesize=[a4_width, a4_height])
+        # Create a temporary PDF file containing the background.
+        background_pdf = tempfile.NamedTemporaryFile(suffix='.pdf', prefix='background.tmp.', mode='w+b')
+        c = canvas.Canvas(background_pdf, pagesize=[a4_width, a4_height])
         c.drawImage(image_reader, 0, 0, a4_width, a4_height)
         c.save()
         image.close()
@@ -73,7 +56,7 @@ class Report(osv.Model):
         pdfreport.write(content)
 
         # Merge the PDF documents and return the merged content.
-        pdfdocuments = [business_paper_pdf, pdfreport]
+        pdfdocuments = [background_pdf, pdfreport]
         content = self._merge_pdf_pages(pdfdocuments)
         return content
 

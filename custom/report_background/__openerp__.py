@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Report customization - business paper",
+    'name': "Report Background",
 
     'summary': """
-        Add business paper to your reports""",
+        Add a background to your reports""",
 
     'description': """
-        Allows to define report business paper.\n
-        Usually you'd want to change the layout of the following reports:\n
+        Allows to define a report background.\n
+        Usually you'd want to change the following reports:\n
         - account.report_invoice_document
     """,
 
@@ -27,7 +27,5 @@
     # always loaded
     'data': [
         'views/menu.xml',
-        'views/report.xml',
-        'views/templates.xml',
     ],
 }
